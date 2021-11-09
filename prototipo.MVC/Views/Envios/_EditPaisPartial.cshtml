@@ -1,0 +1,25 @@
+﻿@model prototipo.Entities.Paises
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+@{
+    Layout = null;
+}
+<div>
+    @using (Html.BeginForm("EditPais", "Envios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <h3 class="modal-title">EDITAR PAIS</h3>
+        <hr />
+        @Html.ValidationSummary(true) 
+        <div class="modal-body">
+            <label>PAIS</label>
+            @Html.TextBoxFor(model => model.PaisName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PaisName)
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="submit" class="btn btn-primary">GUARDAR</button>
+        </div>
+    }
+</div>

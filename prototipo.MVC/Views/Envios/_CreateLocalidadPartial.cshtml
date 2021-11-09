@@ -1,0 +1,35 @@
+﻿@model prototipo.Entities.Localidades
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("CreateLocalidad", "Envios", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <h3 class="modal-title">AGREGAR NUEVA PROVINCIA</h3>
+    <hr />
+    @Html.ValidationSummary(true)
+    <div class="modal-body">
+        <label>PROVINCIA</label>
+        @Html.DropDownListFor(Model => Model.ProvinciaID, new SelectList(ViewBag.ListaProvincias as System.Collections.IEnumerable, "ProvinciaID", "ProvinciaName"), "ELIJA UNA PROVINCIA", new { @class = "form-control", id = "Provincia" })
+        @Html.Hidden("ProvinciaID")
+        <br />
+        <label>LOCALIDAD</label>
+        @Html.TextBoxFor(model => model.LocalidadName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LocalidadName)
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-primary">GUARDAR</button>
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#Provincia').change(function () {
+        $('#ProvinciaId').val($('#Provincia:selected').val());
+    });
+</script>
