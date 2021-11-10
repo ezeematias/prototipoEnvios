@@ -148,6 +148,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\envios.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -177,6 +178,8 @@
     <Content Include="Views\Envios\_CreatePaisPartial.cshtml" />
     <Content Include="Views\Envios\_CreateProvinciaPartial.cshtml" />
     <Content Include="Views\Envios\_EditPaisPartial.cshtml" />
+    <Content Include="Views\Envios\_EditProvinciaPartial.cshtml" />
+    <Content Include="Views\Envios\_EditLocalidadPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -127,12 +127,18 @@ namespace prototipo.MVC.Controllers
             try
             {
                 paisesLogic.Delete(id);
-                return View();
+                return Json(new
+                {
+                    result = "SUCCESS",
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View("Error");
+                return Json(new
+                {
+                    result = "ERROR",
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -141,12 +147,18 @@ namespace prototipo.MVC.Controllers
             try
             {
                 provinciasLogic.Delete(id);
-                return View();
+                return Json(new
+                {
+                    result = "SUCCESS",
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View("Error");
+                return Json(new
+                {
+                    result = "ERROR",
+                }, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult DeleteLocalidad(int id)
@@ -154,19 +166,27 @@ namespace prototipo.MVC.Controllers
             try
             {
                 localidadesLogic.Delete(id);
-                return View();
+                return Json(new
+                {
+                    result = "SUCCESS",
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View("Error");
+                return Json(new
+                {
+                    result = "ERROR",
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
         [HttpGet]
         public PartialViewResult EditPais(int id)
         {
-            var paisModel = context.Paises.Find(id); 
+            var paisModel = context.Paises.Find(id);
+            ViewBag.PaisID = paisModel.PaisID;
+            ViewBag.PaisName = paisModel.PaisName;
             return PartialView("_EditPaisPartial", paisModel);
         }
 
@@ -184,6 +204,41 @@ namespace prototipo.MVC.Controllers
             {
                 return View("Error");
             }
+        }
+
+        [HttpGet]
+        public PartialViewResult EditProvincia(int id)
+        {
+
+            var model = context.Provincias.Find(id);
+            ViewBag.ProvinciaID = model.ProvinciaID;
+            ViewBag.ProvinciaName = model.ProvinciaName;
+
+            return PartialView("_EditProvinciaPartial");
+        }
+
+        [HttpPost]
+        public ActionResult EditProvincia(Provincias model)
+        {
+            provinciasLogic.Update(model);
+            return RedirectToAction("Index", "Envios");
+        }
+
+        [HttpGet]
+        public PartialViewResult EditLocalidad(int id)
+        {
+
+            var model = context.Localidades.Find(id);            
+            ViewBag.LocalidadID = model.localidadID;
+            ViewBag.LocalidadName = model.LocalidadName;
+            return PartialView("_EditLocalidadPartial");
+        }
+
+        [HttpPost]
+        public ActionResult EditLocalidad(Localidades model)
+        {
+            localidadesLogic.Update(model);
+            return RedirectToAction("Index", "Envios");
         }
 
     }

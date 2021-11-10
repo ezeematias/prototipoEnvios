@@ -19,7 +19,7 @@ namespace prototipo.Logic.ClassLogic
             }
             catch (Exception ex)
             {
-                throw ex;
+               // throw ex;
             }
         }
 

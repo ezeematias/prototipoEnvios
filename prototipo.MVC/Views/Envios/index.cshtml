@@ -1,5 +1,6 @@
 ﻿@model prototipo.MVC.Models.BaseModel
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@Scripts.Render("~/Scripts/envios.js")
 @{
     ViewBag.Title = "Home Page";
 }
@@ -26,15 +27,15 @@
                         <td>
                             @if (ViewBag.ListaPaises != null)
                             {
-                                @Html.DropDownListFor(Model => Model.PaisId, new SelectList(ViewBag.ListaPaises as System.Collections.IEnumerable, "PaisId", "PaisName"), "ELIJA UN PAIS", new { @class = "form-control", id = "Pais" })
+                                @Html.DropDownListFor(Model => Model.PaisId, new SelectList(ViewBag.ListaPaises as System.Collections.IEnumerable, "PaisID", "PaisName"), "ELIJA UN PAIS", new { @class = "form-control", id = "Pais" })
                             }
                         </td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-url="@Url.Action("CreatePais","Envios")" id="btnCreatePais">
-                                CREAR
+                                CREAR                               
                             </button>
                         <td>
-                            <button class="btn btn-warning modal-edit" id="btnEditPais">EDITAR</button>
+                            <button class="btn btn-warning modal-edit" data-url="@Url.Action("EditPais","Envios")" id="btnEditPais">EDITAR</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" data-url="@Url.Action("DeletePais","Envios")" id="btnDeletePais">
@@ -49,15 +50,15 @@
                     </tr>
                     <tr>
                         <td>
-                            @Html.DropDownListFor(Model => Model.ProvinciaId, new SelectList(Enumerable.Empty<SelectListItem>(), "ProvinciaId", "ProvinciaName"), "ELIJA UNA PROVINCIA", new { @class = "form-control", id = "Provincia" })
-                        </td>                        
+                            @Html.DropDownListFor(Model => Model.ProvinciaId, new SelectList(Enumerable.Empty<SelectListItem>(), "ProvinciaID", "ProvinciaName"), "ELIJA UNA PROVINCIA", new { @class = "form-control", id = "Provincia" })
+                        </td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-url="@Url.Action("CreateProvincia","Envios")" id="btnCreateProvincia">
                                 CREAR
                             </button>
                         </td>
                         <td>
-                            <button class="btn btn-warning modal-edit" id="btnEditPais">EDITAR</button>
+                            <button class="btn btn-warning modal-edit" data -url="@Url.Action("EditProvincia","Envios")" id="btnEditProvincia">EDITAR</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" data-url="@Url.Action("DeleteProvincia","Envios")" id="btnDeleteProvincia">
@@ -72,14 +73,14 @@
                     </tr>
                     <tr>
                         <td>
-                            @Html.DropDownListFor(Model => Model.LocalidadId, new SelectList(Enumerable.Empty<SelectListItem>(), "localidadId", "LocalidadName"), "ELIJA UNA LOCALIDAD", new { @class = "form-control", id = "Localidad" })
+                            @Html.DropDownListFor(Model => Model.LocalidadId, new SelectList(Enumerable.Empty<SelectListItem>(), "localidadID", "LocalidadName"), "ELIJA UNA LOCALIDAD", new { @class = "form-control", id = "Localidad" })
                         </td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-url="@Url.Action("CreateLocalidad","Envios")" id="btnCreateLocalidad">
                                 CREAR
                             </button>
                         <td>
-                            <button class="btn btn-warning modal-edit" id="btnEditPais">EDITAR</button>
+                            <button class="btn btn-warning modal-edit" data-url="@Url.Action("EditLocalidad","Envios")" id="btnEditLocalidad">EDITAR</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" data-url="@Url.Action("DeleteLocalidad","Envios")" id="btnDeleteLocalidad">
@@ -123,227 +124,5 @@
     <div class="modal hide fade in" id="modal-edit">
         <div id="modal-edit-container"></div>
     </div>
-
-
 </body>
 </html>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-
-
-    $("#Pais").change(function () {
-        var PaisId = $(this).val();
-        $.getJSON("/Envios/LoadProvincias/", { PaisId },
-            function (classesData) {
-                var select = $("#Provincia");
-                select.empty();
-                select.append($('<option/>', {
-                    value: 0,
-                    text: "ELIJA UNA PROVINCIA"
-                }));
-                $.each(classesData, function (index, itemData) {
-                    select.append($('<option/>', {
-                        value: itemData.Value,
-                        text: itemData.Text
-                    }));
-                });
-            });
-    });
-
-    $("#Provincia").change(function () {
-        var ProvinciaId = $(this).val();
-        $.getJSON("/Envios/LoadLocalidades/", { ProvinciaId },
-            function (classesData) {
-                var select = $("#Localidad");
-                select.empty();
-                select.append($('<option/>', {
-                    value: 0,
-                    text: "ELIJA UNA LOCALIDAD"
-                }));
-                $.each(classesData, function (index, itemData) {
-                    select.append($('<option/>', {
-                        value: itemData.Value,
-                        text: itemData.Text
-                    }));
-                });
-            });
-    });
-
-    $('#submitbtn').click(function (e) {
-        e.preventDefault();
-        if ($("#Pais").val() != "" && $("#Provincia").val() != "" && $("#Localidad").val() != "" && $("#CalleName").val() != "") {
-
-            var selectedValue = "PAIS: " + $("#Pais option:selected").text() + '\r\n' +
-                "PROVINCIA: " + $("#Provincia option:selected").text() + '\r\n' +
-                "LOCALIDAD: " + $("#Localidad option:selected").text() + '\r\n' +
-                "CALLE: " + $("#CalleName").val();
-            $('#txtInfo').val(selectedValue);
-        }
-        else {
-            alert("FALTAN COMPLETAR DATOS")
-        }
-    });
-
-    $("#btnCreatePais").on("click", function () {
-
-        $.ajax(
-            {
-                type: 'GET',
-                url: '/Envios/CreatePais',
-                contentType: 'application/json; charset=utf=8',
-                success: function (result) {
-                    $('#modal-add-content').html(result);
-                    $('#modal-add').modal('show');
-                },
-                error: function (er) {
-                    alert(er);
-                }
-            });
-    });
-
-    $("#btnCreateProvincia").on("click", function () {
-
-        $.ajax(
-            {
-                type: 'GET',
-                url: '/Envios/CreateProvincia',
-                contentType: 'application/json; charset=utf=8',
-                success: function (result) {
-                    $('#modal-add-content').html(result);
-                    $('#modal-add').modal('show');
-                },
-                error: function (er) {
-                    alert(er);
-                }
-            });
-
-    });
-
-    $("#btnCreateLocalidad").on("click", function () {
-
-        $.ajax(
-            {
-                type: 'GET',
-                url: '/Envios/CreateLocalidad',
-                contentType: 'application/json; charset=utf=8',
-                success: function (result) {
-                    $('#modal-add-content').html(result);
-                    $('#modal-add').modal('show');
-                },
-                error: function (er) {
-                    alert(er);
-                }
-            });
-
-    });
-
-    $("#btnDeletePais").on("click", function () {
-        var data = $("#Pais").val()
-        if (data == 0) {
-            alert("SELECCIONE UN PAIS A ELIMINAR");
-        }
-        else {
-            if(confirm('¿DESEA ELIMINAR ESTE PAIS?')==true)
-            {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: '/Envios/DeletePais?id=' + data,
-                        contentType: 'application/json; charset=utf=8',
-                        success: function (result) {
-                            alert("REGISTRO ELIMINADO CON EXITO");
-                            location.reload();
-                        },
-                        error: function (er) {
-                            alert("PAIS ELIMINADO");
-                            location.reload();
-                        }
-                    });
-            }
-        }
-    });
-
-    $("#btnDeleteProvincia").on("click", function () {
-        var data = $("#Provincia").val()
-        if (data == 0) {
-            alert("SELECCIONE UNA PROVINCIA A ELIMINAR");
-        }
-        else {
-            if(confirm('¿DESEA ELIMINAR ESTA PROVINCIA?')==true)
-            {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: '/Envios/DeleteProvincia?id=' + data,
-                        contentType: 'application/json; charset=utf=8',
-                        success: function (result) {
-                            alert("REGISTRO ELIMINADO CON EXITO");
-                            location.reload();
-                        },
-                        error: function (er) {
-                            alert("PROVINCIA ELIMINADA");
-                            location.reload();
-                        }
-                    });
-            }
-        }
-    });
-
-    $("#btnDeleteLocalidad").on("click", function () {
-        var data = $("#Localidad").val()
-        if (data == 0) {
-            alert("SELECCIONE UNA LOCALIDAD A ELIMINAR");
-        }
-        else {
-            if(confirm('¿DESEA ELIMINAR ESTA PROVINCIA?')==true)
-            {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: '/Envios/DeleteLocalidad?id=' + data,
-                        contentType: 'application/json; charset=utf=8',
-                        success: function (result) {
-                            alert("REGISTRO ELIMINADO CON EXITO");
-                            location.reload();
-                        },
-                        error: function (er) {
-                            alert("LOCALIDAD ELIMINADA");
-                            location.reload();
-                        }
-                    });
-            }
-        }
-    });
-
-    $("#btnEditPais").on("click", function () {
-
-        var dataId = $("#Pais").val()
-        if (dataId == 0) {
-            alert("SELECCIONE UN PAIS A MODIFICAR");
-        }
-        else {
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/Envios/EditPais?id=' + data,
-                    contentType: 'application/json; charset=utf=8',
-                    success: function (result) {
-                        alert("REGISTRO ELIMINADO CON EXITO");
-                        location.reload();
-                    },
-                    error: function (er) {
-                        alert("PAIS ADITADO");
-                        location.reload();
-                    }
-                });
-        }
-
-
-
-
-
-    });
-
-</script>

@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2158b8f1-fb15-46f0-8250-4b9b76399330": {
+      "ProjectGuid": "2158b8f1-fb15-46f0-8250-4b9b76399330",
+      "DisplayName": "prototipo.MVC",
+      "ColorIndex": 0
+    },
+    "94b0a394-066d-467e-8b3c-0886e5def75d": {
+      "ProjectGuid": "94b0a394-066d-467e-8b3c-0886e5def75d",
+      "DisplayName": "prototipo.Logic",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
