@@ -1,6 +1,6 @@
 ﻿@model prototipo.MVC.Models.BaseModel
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-@Scripts.Render("~/Scripts/envios.js")
+@Scripts.Render("~/Scripts/enviosScript.js")
 @{
     ViewBag.Title = "Home Page";
 }
@@ -20,7 +20,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <h3>PAIS</h3>
+                            <h4>PAIS</h4>
                         </td>
                     </tr>
                     <tr>
@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-url="@Url.Action("CreatePais","Envios")" id="btnCreatePais">
-                                CREAR                               
+                                CREAR
                             </button>
                         <td>
                             <button class="btn btn-warning modal-edit" data-url="@Url.Action("EditPais","Envios")" id="btnEditPais">EDITAR</button>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <h3>PROVINCIA</h3>
+                            <h4>PROVINCIA</h4>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <h3>LOCALIDAD</h3>
+                            <h4>LOCALIDAD</h4>
                         </td>
                     </tr>
                     <tr>
@@ -90,29 +90,32 @@
                     </tr>
                     <tr>
                         <td>
-                            <h3>CALLE</h3>
+                            <h4>CALLE</h4>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="5">@Html.TextBox("CalleName", null, new { @class = "form-control" })</td>
+                        <td>@Html.TextBox("CalleName", null, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                            <input type="submit" value="CARGAR DIRECCION" class="btn btn-info" id="submitbtn" />
+                            @Html.ActionLink("BORRAR", "Index", "Envios", new { @class = "btn btn-info" })    
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.TextArea("txtInfo", string.Empty, 4, 50, new { @class = "form-group", @readonly = true })
+                            <br />
+                            <br />
+                        </td>
                     </tr>
                 </tbody>
             </table>
-
-            <input type="submit" value="CARGAR DIRECCION" class="btn btn-info" id="submitbtn" />
-            @Html.ActionLink("BORRAR", "Index", "Envios", new { @class = "btn btn-info" })
-
-
-            <br />
-            <br />
-            @Html.TextArea("txtInfo", string.Empty, 4, 55, new { @class = "form-group", @readonly = true })
-
-            <br />
-            <br />
         </div>
     </div>
-
-
     <div id="modal-add" class=" modal fade in">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -120,9 +123,12 @@
             </div>
         </div>
     </div>
-
-    <div class="modal hide fade in" id="modal-edit">
-        <div id="modal-edit-container"></div>
+    <div id="modal-edit" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div id='modal-edit-content'></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

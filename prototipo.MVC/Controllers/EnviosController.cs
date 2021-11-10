@@ -64,7 +64,6 @@ namespace prototipo.MVC.Controllers
         public ActionResult CreatePais(Paises model)
         {
             model.Available = 1;
-
             if (model != null)
             {
                 paisesLogic.Add(model);
@@ -87,7 +86,6 @@ namespace prototipo.MVC.Controllers
         public ActionResult CreateProvincia(Provincias model)
         {
             model.Available = 1;
-
             if (model != null)
             {
                 provinciasLogic.Add(model);
@@ -187,7 +185,7 @@ namespace prototipo.MVC.Controllers
             var paisModel = context.Paises.Find(id);
             ViewBag.PaisID = paisModel.PaisID;
             ViewBag.PaisName = paisModel.PaisName;
-            return PartialView("_EditPaisPartial", paisModel);
+            return PartialView("_EditPaisPartial");
         }
 
         [HttpPost]
@@ -196,8 +194,7 @@ namespace prototipo.MVC.Controllers
 
             if (ModelState.IsValid)
             {
-                var toUpdate = context.Paises.Find(model.PaisID);                
-                paisesLogic.Update(toUpdate);
+                paisesLogic.Update(model);
                 return RedirectToAction("Index", "Envios");
             }
             else
@@ -209,7 +206,6 @@ namespace prototipo.MVC.Controllers
         [HttpGet]
         public PartialViewResult EditProvincia(int id)
         {
-
             var model = context.Provincias.Find(id);
             ViewBag.ProvinciaID = model.ProvinciaID;
             ViewBag.ProvinciaName = model.ProvinciaName;
@@ -227,7 +223,6 @@ namespace prototipo.MVC.Controllers
         [HttpGet]
         public PartialViewResult EditLocalidad(int id)
         {
-
             var model = context.Localidades.Find(id);            
             ViewBag.LocalidadID = model.localidadID;
             ViewBag.LocalidadName = model.LocalidadName;

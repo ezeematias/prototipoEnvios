@@ -1,11 +1,7 @@
 ﻿@model prototipo.Entities.Paises
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-
-@{
-    Layout = null;
-}
-
+@{    Layout = null;}
 @using (Html.BeginForm("CreatePais", "Envios", FormMethod.Post))
 {
     @Html.AntiForgeryToken()

@@ -6,12 +6,12 @@
 {
     @Html.AntiForgeryToken()
     <br />
-    <h3 class="modal-title">EDITAR PAIS</h3>
+    <h3 class="modal-title text-center">EDITAR PAIS</h3>
     <hr />
     @Html.ValidationSummary(true)
     <div class="modal-body">
         <label>PAIS</label>
-        <p name="PaisID">@ViewBag.PaisName</p>
+        <p name="PaisID">@ViewBag.PaisID</p>
         @Html.TextBoxFor(model => model.PaisName, new { Value = ViewBag.PaisName, @class = "form-control" })
         @Html.ValidationMessageFor(model => model.PaisName)
     </div>

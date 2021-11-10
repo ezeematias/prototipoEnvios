@@ -1,15 +1,12 @@
 ﻿@model prototipo.Entities.Localidades
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-@{
-    Layout = null;
-}
-
+@{    Layout = null;}
 @using (Html.BeginForm("CreateLocalidad", "Envios", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <br />
-    <h3 class="modal-title">AGREGAR NUEVA PROVINCIA</h3>
+    <h3 class="modal-title text-center">AGREGAR NUEVA PROVINCIA</h3>
     <hr />
     @Html.ValidationSummary(true)
     <div class="modal-body">
@@ -20,7 +17,6 @@
         <label>LOCALIDAD</label>
         @Html.TextBoxFor(model => model.LocalidadName, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.LocalidadName)
-
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>

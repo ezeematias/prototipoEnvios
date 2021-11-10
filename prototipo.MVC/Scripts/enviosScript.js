@@ -83,7 +83,6 @@ $("#btnCreateProvincia").on("click", function () {
                 alert(er);
             }
         });
-
 });
 
 $("#btnCreateLocalidad").on("click", function () {
@@ -128,7 +127,6 @@ $("#btnDeletePais").on("click", function () {
                 });
         }
     }
-
 });
 
 $("#btnDeleteProvincia").on("click", function () {
@@ -189,21 +187,19 @@ $("#btnEditPais").on("click", function () {
         alert("SELECCIONE UN PAIS A MODIFICAR");
     }
     else {
-        if (confirm('¿DESEA MODIFICAR ESTE PAIS?') == true) {
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/Envios/EditPais?id=' + data,
-                    contentType: 'application/json; charset=utf=8',
-                    success: function (result) {
-                        $('#modal-edit-content').html(result);
-                        $('#modal-edit').modal('show');
-                    },
-                    error: function (er) {
-                        alert(er);
-                    }
-                });
-        }
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/Envios/EditPais?id=' + data,
+                contentType: 'application/json; charset=utf=8',
+                success: function (result) {
+                    $('#modal-edit-content').html(result);
+                    $('#modal-edit').modal('show');
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
     }
 });
 
@@ -213,21 +209,20 @@ $("#btnEditProvincia").on("click", function () {
         alert("SELECCIONE UNA PROVINCIA A MODIFICAR");
     }
     else {
-        if (confirm('¿DESEA MODIFICAR ESTA PROVINCIA?') == true) {
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/Envios/EditProvincia?id=' + data,
-                    contentType: 'application/json; charset=utf=8',
-                    success: function (result) {
-                        $('#modal-edit-content').html(result);
-                        $('#modal-edit').modal('show');
-                    },
-                    error: function (er) {
-                        alert(er);
-                    }
-                });
-        }
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/Envios/EditProvincia?id=' + data,
+                contentType: 'application/json; charset=utf=8',
+                success: function (result) {
+                    $('#modal-edit-content').html(result);
+                    $('#modal-edit').modal('show');
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
+
     }
 });
 
@@ -237,20 +232,18 @@ $("#btnEditLocalidad").on("click", function () {
         alert("SELECCIONE UNA LOCALIDAD A MODIFICAR");
     }
     else {
-        if (confirm('¿DESEA MODIFICAR ESTA LOCALIDAD?') == true) {
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/Envios/EditLocalidad?id=' + data,
-                    contentType: 'application/json; charset=utf=8',
-                    success: function (result) {
-                        $('#modal-edit-content').html(result);
-                        $('#modal-edit').modal('show');
-                    },
-                    error: function (er) {
-                        alert(er);
-                    }
-                });
-        }
+        $.ajax(
+            {
+                type: 'GET',
+                url: '/Envios/EditLocalidad?id=' + data,
+                contentType: 'application/json; charset=utf=8',
+                success: function (result) {
+                    $('#modal-edit-content').html(result);
+                    $('#modal-edit').modal('show');
+                },
+                error: function (er) {
+                    alert(er);
+                }
+            });
     }
 });

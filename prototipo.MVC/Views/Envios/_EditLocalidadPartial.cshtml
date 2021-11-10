@@ -1,27 +1,20 @@
 ﻿@model prototipo.Entities.Localidades
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-
 @{ Layout = null; }
-
 @using (Html.BeginForm("EditLocalidad", "Envios", new { LocalidadId = @ViewBag.LocalidadId }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <br />
-    <h3 class="modal-title">EDITAR LOCALIDAD</h3>
+    <h3 class="modal-title text-center">EDITAR LOCALIDAD</h3>
     <hr />
     @Html.ValidationSummary(true)
     <div class="modal-body">
-
         <label>LOCALIDAD</label>
         <p name="LocalidadId">@ViewBag.LocalidadId</p>
-
         @Html.TextBoxFor(model => model.LocalidadName, new { Value = ViewBag.LocalidadName, @class = "form-control" })
         @Html.ValidationMessageFor(model => model.LocalidadName)
-
-
     </div>
-
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
         <button type="submit" class="btn btn-primary">MODIFICAR</button>
