@@ -209,7 +209,6 @@ namespace prototipo.MVC.Controllers
             var model = context.Provincias.Find(id);
             ViewBag.ProvinciaID = model.ProvinciaID;
             ViewBag.ProvinciaName = model.ProvinciaName;
-
             return PartialView("_EditProvinciaPartial");
         }
 
@@ -235,6 +234,5 @@ namespace prototipo.MVC.Controllers
             localidadesLogic.Update(model);
             return RedirectToAction("Index", "Envios");
         }
-
     }
 }

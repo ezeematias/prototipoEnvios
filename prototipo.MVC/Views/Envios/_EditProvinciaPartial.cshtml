@@ -9,15 +9,15 @@
     <h3 class="modal-title text-center">EDITAR PROVINCIA</h3>
     <hr />
     @Html.ValidationSummary(true)
-    <div class="modal-body">
-        <label>PROVINCIA</label>
-        <p name="ProvinciaId">@ViewBag.ProvinciaId</p>
+    <div class="modal-body text-center">
+        <label>PROVINCIA A EDITAR</label>
+        <p name="ProvinciaId">@ViewBag.ProvinciaName</p>
         @Html.TextBoxFor(model => model.ProvinciaName, new { Value = ViewBag.ProvinciaName, @class = "form-control" })
         @Html.ValidationMessageFor(model => model.ProvinciaName)
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
-        <button type="submit" class="btn btn-primary">MODIFICAR</button>
+        <button type="button" class="pull-left btn btn-danger" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-success">MODIFICAR</button>
     </div>
 }
 

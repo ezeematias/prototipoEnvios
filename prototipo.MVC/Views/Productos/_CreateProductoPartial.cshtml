@@ -1,0 +1,51 @@
+﻿@model prototipo.MVC.Models.ProductoModel
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+@{ Layout = null;}
+@using (Html.BeginForm("CreateProducto", "Productos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <h3 class="modal-title text-center">AGREGAR NUEVO PRODUCTO</h3>
+    <hr />
+    @Html.ValidationSummary(true)
+    <div class="modal-body">
+        <label>NOMBRE</label>
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+        <br />
+        <label>MARCA</label>
+        @Html.TextBoxFor(model => model.Marca, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Marca)
+        <br />
+        <label>DESCRIPCIÓN</label>
+        @Html.TextBoxFor(model => model.Descripción, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Descripción)
+        <br />
+        <label>PRECIO</label>
+        @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Precio)
+        <br />
+        <label>STOCK</label>
+        @Html.TextBoxFor(model => model.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Stock)
+        <br />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="pull-left btn btn-danger" data-dismiss="modal" id="cancelar">CANCELAR</button>
+        <button type="submit" class="btn btn-success">MODIFICAR</button>
+    </div>
+    <script> 
+
+        $('#cancelar').click(function (e) {
+            e.preventDefault();
+            $('#Nombre').val('');
+            $('#Marca').val('');
+            $('#Descripción').val('');
+            $('#Precio').val('');
+            $('#Stock').val('');
+        });
+
+    </script>
+}
+

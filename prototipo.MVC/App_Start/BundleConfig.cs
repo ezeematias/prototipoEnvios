@@ -9,7 +9,7 @@ namespace prototipo.MVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js", "~/Scripts/enviosScript.js"));
+                        "~/Scripts/jquery-{version}.js", "~/Scripts/enviosScript.js", "~/Scripts/productosScript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

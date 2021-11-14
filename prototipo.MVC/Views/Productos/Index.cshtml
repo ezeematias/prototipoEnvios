@@ -1,0 +1,61 @@
+﻿@model List<prototipo.MVC.Models.ProductoModel>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@Scripts.Render("~/Scripts/productosScript.js")
+@{
+    ViewBag.Title = "Productos";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h1>Productos</h1>
+    <div>
+        @Html.ActionLink("CREAR", "CreateProducto", null, new { @data_toggle = "modal", @data_target = "#modal-add", @class = "btn btn-success", @id = "btnCreateProducto" })
+
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model)
+            {
+                <tr>
+                    <td scope="row" id="ID_Producto">@producto.ID_Producto</td>
+                    <td scope="row">@producto.Nombre</td>
+                    <td scope="row">@producto.Marca</td>
+                    <td scope="row">@producto.Descripción</td>
+                    <td scope="row">@producto.Stock</td>
+                    <td scope="row">@producto.Precio</td>
+                    <td scope="row">@Html.ActionLink("EDITAR", "EditProducto",new { id = producto.ID_Producto }, new { @data_toggle = "modal", @data_target = "#modal-edit", @class = "btn btn-warning", @id= "btnEditProducto" })</td>
+                    <td scope="row">@Html.ActionLink("BORRAR", "DeleteProducto", new { id = producto.ID_Producto }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div id="modal-add" class=" modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div id='modal-add-content'></div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-edit" class="modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div id='modal-edit-content'></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
